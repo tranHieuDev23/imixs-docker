@@ -1,13 +1,13 @@
-FROM debian:buster-slim
+FROM postgres:14.2-bullseye
 
-LABEL authors="Ralph Soika <ralph.soika@imixs.com>, Simone Fardella <fardella.simone@gmail.com>"
+LABEL authors="Tran Minh Hieu <tranhieu23.code@outlook.com>"
 
-# install packages: psql and slim down image
+# install packages;
 RUN apt-get update \
- && apt-get install --no-install-recommends -y \
-  cron ssh netcat mariadb-client postgresql-client-11 \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man/?? /usr/share/man/??_*
+    && apt-get install --no-install-recommends -y \
+    cron ssh netcat mariadb-client \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man/?? /usr/share/man/??_*
 
 # disable default crontab
 COPY crontab /etc/crontab
